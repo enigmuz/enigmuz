@@ -1,0 +1,32 @@
+name: 🖥️ Rebuild ASCII Terminal
+
+# Regenerates assets/terminal.svg whenever the avatar or generator changes.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/avatar.png"
+      - "scripts/generate_terminal.py"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python scripts/generate_terminal.py --image assets/avatar.png --out assets/terminal.svg --cols 52
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/terminal.svg
+          git diff --cached --quiet || git commit -m "chore(terminal): rebuild ASCII terminal [skip ci]"
+          git push
