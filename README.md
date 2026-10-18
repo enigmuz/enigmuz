@@ -25,6 +25,18 @@
 
 <br/>
 
+## 🐍 The Snake Hunts My Commits
+
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake.svg"/>
+  <img alt="Contribution snake eating the Enigmuz GitHub contribution grid" src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg" width="100%"/>
+</picture>
+</div>
+
+<br/>
+
 ## `> cat ./enigmuz.yaml`
 
 ```yaml
@@ -275,18 +287,6 @@ Secure multi-role **digital prescription** platform (doctor / pharmacist / patie
 
 <img src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/activity.svg" width="100%" alt="Enigmuz daily GitHub contribution activity graph"/>
 
-</div>
-
-<br/>
-
-## 🐍 The Snake Hunts My Commits
-
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake.svg"/>
-  <img alt="Contribution snake eating the Enigmuz GitHub contribution grid" src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg" width="100%"/>
-</picture>
 </div>
 
 <br/>

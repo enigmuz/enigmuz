@@ -12,6 +12,7 @@ Usage (locally):  GITHUB_TOKEN=ghp_xxx python scripts/generate_stats.py --user e
 import argparse
 import json
 import os
+import urllib.error
 import urllib.request
 from datetime import date
 
@@ -46,11 +47,36 @@ def fetch(login, token):
         data=json.dumps({"query": QUERY, "variables": {"login": login}}).encode(),
         headers={"Authorization": f"bearer {token}", "Content-Type": "application/json",
                  "User-Agent": "enigmuz-stats"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        data = json.load(r)
-    if "errors" in data:
-        raise SystemExit(f"GraphQL error: {data['errors']}")
-    return data["data"]["user"]
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.load(r)
+    except urllib.error.HTTPError as e:
+        raise SystemExit(f"GitHub API HTTP {e.code}: {e.read().decode(errors='replace')[:500]}")
+    for err in data.get("errors") or []:  # partial data is still usable
+        print(f"::warning::GraphQL: {err.get('message')} (path: {err.get('path')})")
+    user = (data.get("data") or {}).get("user")
+    if not user:
+        raise SystemExit("No user data returned")
+    return normalise(user)
+
+
+def normalise(u):
+    """Replace any field the token could not read with safe empty values."""
+    tc = lambda x: x if isinstance(x, dict) and "totalCount" in x else {"totalCount": 0}
+    u["followers"], u["pullRequests"], u["issues"] = tc(u.get("followers")), tc(u.get("pullRequests")), tc(u.get("issues"))
+    repos = u.get("repositories") or {}
+    repos.setdefault("totalCount", 0)
+    repos["nodes"] = [n for n in (repos.get("nodes") or []) if n]
+    for n in repos["nodes"]:
+        n["stargazerCount"] = n.get("stargazerCount") or 0
+        n["languages"] = n.get("languages") or {"edges": []}
+    u["repositories"] = repos
+    cc = u.get("contributionsCollection") or {}
+    cc["totalCommitContributions"] = cc.get("totalCommitContributions") or 0
+    cc["restrictedContributionsCount"] = cc.get("restrictedContributionsCount") or 0
+    cc["contributionCalendar"] = cc.get("contributionCalendar") or {"totalContributions": 0, "weeks": []}
+    u["contributionsCollection"] = cc
+    return u
 
 
 def frame(w, h, title, body):
@@ -132,7 +158,8 @@ def langs_svg(u, top=7):
 
 def activity_svg(u, days=60):
     cal = [d for w in u["contributionsCollection"]["contributionCalendar"]["weeks"] for d in w["contributionDays"]]
-    cal = [d for d in cal if d["date"] <= date.today().isoformat()][-days:]
+    cal = [d for d in cal if d["date"] <= date.today().isoformat()][-days:] or [
+        {"date": date.today().isoformat(), "contributionCount": 0}]
     W, H = 940, 260
     L, R, T, B = 50, 24, 56, 40
     mx = max([d["contributionCount"] for d in cal] + [1])
@@ -166,7 +193,8 @@ def main():
     ap.add_argument("--user", default=os.getenv("GITHUB_REPOSITORY_OWNER", "enigmuz"))
     ap.add_argument("--out", default="dist")
     a = ap.parse_args()
-    token = os.environ.get("GITHUB_TOKEN")
+    # GH_STATS_TOKEN (optional PAT secret) is preferred; falls back to the workflow token
+    token = os.environ.get("GH_STATS_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
         raise SystemExit("GITHUB_TOKEN is required")
     u = fetch(a.user, token)
