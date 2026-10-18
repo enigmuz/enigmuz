@@ -29,9 +29,9 @@
 
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake.svg"/>
-  <img alt="Contribution snake eating the Enigmuz GitHub contribution grid" src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg" width="100%"/>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg?v=2"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake.svg?v=2"/>
+  <img alt="Contribution snake eating the Enigmuz GitHub contribution grid" src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/github-snake-dark.svg?v=2" width="100%"/>
 </picture>
 </div>
 

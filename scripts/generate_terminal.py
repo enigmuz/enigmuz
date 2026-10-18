@@ -31,7 +31,7 @@ INFO = [
     None,  # separator
     ("Name", "Nimantha Perera"),
     ("Alias", "Enigmuz"),
-    ("Role", "Associate Engineer — DevSecOps"),
+    ("Role", "Associate Engineer - DevSecOps"),
     ("Ops", "SOC · MSSP · Incident Response"),
     ("Mode", "Builder · Defender · Researcher"),
     ("Focus", "Agentic AI · Security Automation"),
