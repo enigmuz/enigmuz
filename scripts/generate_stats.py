@@ -20,43 +20,48 @@ BG, BORDER, TEXT, MUTED = "#0d1117", "#30363d", "#e6edf3", "#7d8590"
 G, C = "#39ff14", "#00e5ff"
 FONT = "font-family=\"'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace\""
 
-QUERY = """
-query($login:String!){
-  user(login:$login){
-    name login
-    followers{totalCount}
-    pullRequests{totalCount}
-    issues{totalCount}
-    repositories(ownerAffiliations:OWNER,isFork:false,privacy:PUBLIC,first:100){
-      totalCount
-      nodes{ stargazerCount
-        languages(first:10,orderBy:{field:SIZE,direction:DESC}){ edges{ size node{name color} } } }
-    }
-    contributionsCollection{
-      totalCommitContributions restrictedContributionsCount
-      contributionCalendar{ totalContributions
-        weeks{ contributionDays{ date contributionCount } } }
-    }
-  }
-}"""
+# Each field group is queried on its own: with the workflow token some User
+# connections are not accessible, and one non-null failure nulls the whole user.
+PARTS = {
+    "core": "name login contributionsCollection{ totalCommitContributions restrictedContributionsCount "
+            "contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount } } } }",
+    "repos": "repositories(ownerAffiliations:OWNER,isFork:false,privacy:PUBLIC,first:100){ totalCount "
+             "nodes{ stargazerCount languages(first:10,orderBy:{field:SIZE,direction:DESC})"
+             "{ edges{ size node{ name color } } } } }",
+    "followers": "followers{ totalCount }",
+    "prs": "pullRequests{ totalCount }",
+    "issues": "issues{ totalCount }",
+}
 
 
-def fetch(login, token):
+def gql(query, login, token):
     req = urllib.request.Request(
         "https://api.github.com/graphql",
-        data=json.dumps({"query": QUERY, "variables": {"login": login}}).encode(),
+        data=json.dumps({"query": query, "variables": {"login": login}}).encode(),
         headers={"Authorization": f"bearer {token}", "Content-Type": "application/json",
                  "User-Agent": "enigmuz-stats"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             data = json.load(r)
     except urllib.error.HTTPError as e:
-        raise SystemExit(f"GitHub API HTTP {e.code}: {e.read().decode(errors='replace')[:500]}")
-    for err in data.get("errors") or []:  # partial data is still usable
-        print(f"::warning::GraphQL: {err.get('message')} (path: {err.get('path')})")
-    user = (data.get("data") or {}).get("user")
-    if not user:
-        raise SystemExit("No user data returned")
+        return None, f"HTTP {e.code}: {e.read().decode(errors='replace')[:300]}"
+    except Exception as e:  # network etc.
+        return None, repr(e)
+    errs = "; ".join(x.get("message", "") for x in data.get("errors") or [])
+    return (data.get("data") or {}).get("user"), errs
+
+
+def fetch(login, token):
+    user = {"login": login}
+    for name, fields in PARTS.items():
+        part, err = gql("query($login:String!){ user(login:$login){ %s } }" % fields, login, token)
+        if err:
+            print(f"::warning::{name}: {err}")
+        if part:
+            user.update(part)
+            print(f"ok: {name}")
+    if "contributionsCollection" not in user and "repositories" not in user:
+        raise SystemExit("Could not read contributions or repositories — add a GH_STATS_TOKEN secret (classic PAT, read:user)")
     return normalise(user)
 
 
@@ -125,7 +130,7 @@ def stats_svg(u):
                 f'text-anchor="middle">{total:,}</text>'
                 f'<text x="{cx}" y="{cy + 20}" {FONT} font-size="9.5" fill="{MUTED}" text-anchor="middle">'
                 f'contribs / yr</text>')
-    return frame(460, 230, f"{u['name'] or u['login']} // Telemetry", "".join(body))
+    return frame(460, 230, f"{u.get('name') or u['login']} // Telemetry", "".join(body))
 
 
 def langs_svg(u, top=7):

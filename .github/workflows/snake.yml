@@ -29,6 +29,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Remove the progress bar under the snake
+        run: python scripts/strip_snake_bar.py dist/github-snake.svg dist/github-snake-dark.svg
+
       - name: Generate stats, languages & activity cards
         continue-on-error: true   # never block the snake if stats fail
         run: python scripts/generate_stats.py --user ${{ github.repository_owner }} --out dist
