@@ -29,7 +29,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Take ownership of dist (snk writes it as root)
+        run: sudo chown -R "$(id -u):$(id -g)" dist
+
       - name: Remove the progress bar under the snake
+        continue-on-error: true   # worst case the bar stays; the snake still publishes
         run: python scripts/strip_snake_bar.py dist/github-snake.svg dist/github-snake-dark.svg
 
       - name: Generate stats, languages & activity cards
