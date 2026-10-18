@@ -7,7 +7,7 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,45:0b3d2e,100:39ff14&height=230&section=header&text=Hey,%20I%27m%20Nimantha%20Perera&fontSize=46&fontColor=e6edf3&fontAlignY=36&animation=fadeIn&desc=aka%20Enigmuz%20%E2%80%A2%20DevSecOps%20%E2%80%A2%20Agentic%20AI%20Security%20%E2%80%A2%20Threat%20Hunting&descSize=17&descAlignY=58" alt="Nimantha Perera (Enigmuz) — DevSecOps Engineer, Cybersecurity Researcher and Agentic AI Security Engineer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,45:0b3d2e,100:39ff14&height=230&section=header&text=Hey,%20I%27m%20Nimantha%20Perera&fontSize=46&fontColor=e6edf3&fontAlignY=36&animation=fadeIn&desc=aka%20Enigmuz%20%E2%80%A2%20DevSecOps%20%E2%80%A2%20Agentic%20AI%20Security%20%E2%80%A2%20Cyber%20Security%20Research&descSize=17&descAlignY=58" alt="Nimantha Perera (Enigmuz) — DevSecOps Engineer, Cybersecurity Researcher and Agentic AI Security Engineer" width="100%"/>
 
 <a href="https://github.com/enigmuz">
   <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=21&duration=2600&pause=700&color=39FF14&center=true&vCenter=true&multiline=false&width=760&height=48&lines=%3E+whoami+%E2%86%92+Nimantha+Perera+%2F%2F+Enigmuz;DevSecOps+Engineer+%7C+Cybersecurity+Researcher;Building+Agentic+AI+Security+Platforms+%F0%9F%A4%96;Security+Automation+%E2%80%A2+SOAR+%E2%80%A2+SIEM+%E2%80%A2+EDR;Threat+Hunter+%E2%80%A2+Detection+Engineer;Secure+CI%2FCD+%E2%80%A2+Cloud+Security+%E2%80%A2+Offensive+Research;Automate+the+boring.+Hunt+the+rest." alt="Typing animation: DevSecOps Engineer, Cybersecurity Researcher, Agentic AI Security, Security Automation, Threat Hunter"/>
@@ -42,7 +42,6 @@ operator:
     - RAG systems that ground LLMs in security knowledge & telemetry
     - AI-assisted SOC triage with human-in-the-loop approval gates
     - Threat-intel, dark-web & brand-protection automation
-  path:        Intern → SOC L1 → Senior SOC Analyst (Shift Lead) → DevSecOps
   education:   BSc (Hons) Computer Networks & Cyber Security — KIU (2026)
   motto:       "Automate the boring. Hunt the rest."
 ```
@@ -192,7 +191,7 @@ Secure multi-role **digital prescription** platform (doctor / pharmacist / patie
 <td colspan="2" valign="top">
 
 #### 🎟️ [Uptime-E](https://github.com/enigmuz?tab=repositories&q=Uptime)
-**Event ticket management** system: event listings, ticket handling and attendee management.
+**Event ticket management** system.
 <br/>`Secure App Dev` `Ticketing`
 
 </td>
@@ -269,12 +268,12 @@ Secure multi-role **digital prescription** platform (doctor / pharmacist / patie
 
 <div align="center">
 
-<img height="175" src="https://github-readme-stats.vercel.app/api?username=enigmuz&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=39ff14&icon_color=00e5ff&text_color=e6edf3&ring_color=39ff14" alt="Enigmuz GitHub stats"/>
-<img height="175" src="https://github-readme-stats.vercel.app/api/top-langs/?username=enigmuz&layout=compact&langs_count=8&hide_border=true&bg_color=0d1117&title_color=39ff14&text_color=e6edf3" alt="Enigmuz top languages"/>
+<img src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/stats.svg" width="49%" alt="Enigmuz GitHub stats: contributions, commits, repositories, pull requests"/>
+<img src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/langs.svg" width="49%" alt="Enigmuz top programming languages"/>
 
 <img src="https://streak-stats.demolab.com?user=enigmuz&hide_border=true&background=0D1117&ring=39FF14&fire=00E5FF&currStreakLabel=39FF14&sideLabels=E6EDF3&dates=7D8590&currStreakNum=E6EDF3&sideNums=E6EDF3&stroke=30363D" alt="Enigmuz GitHub contribution streak" width="70%"/>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=enigmuz&bg_color=0d1117&color=39ff14&line=00e5ff&point=e6edf3&area=true&area_color=39ff14&hide_border=true&custom_title=Enigmuz%20%2F%2F%20Contribution%20Signal" alt="Enigmuz contribution activity graph" width="100%"/>
+<img src="https://raw.githubusercontent.com/enigmuz/enigmuz/output/activity.svg" width="100%" alt="Enigmuz daily GitHub contribution activity graph"/>
 
 </div>
 
