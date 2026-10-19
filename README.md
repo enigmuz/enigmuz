@@ -1,5 +1,5 @@
 <!--
-  Nimantha Perera (Enigmuz) — DevSecOps Engineer, Cybersecurity Researcher, Security Automation & Agentic AI Security Engineer.
+  Nimantha Perera (Enigmuz) - DevSecOps Engineer, Cybersecurity Researcher, Security Automation & Agentic AI Security Engineer.
   Keywords: Nimantha Perera, Enigmuz, DevSecOps, RAG, Retrieval-Augmented Generation, Agentic AI Systems, Cybersecurity Engineer, Security Researcher, Threat Hunter, Detection Engineering,
   SOC Analyst, SOAR, SIEM, Security Automation, Agentic AI, AI Security, LLM Security, AI Red Teaming, MCP, Threat Intelligence,
   Dark Web Monitoring, Brand Protection, Anti-Phishing, Domain Squatting, Cloud Security, Secure CI/CD, Offensive Security.
@@ -136,13 +136,6 @@ operator:
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-#### 🧠 Albino RedTeaming &nbsp;<img src="https://img.shields.io/badge/STATUS-ACTIVE%20BUILD-39ff14?style=flat-square&labelColor=0d1117"/>
-Authorized **AI red-teaming & attack-surface-management** platform. An LLM agent bound over **MCP** plans and executes assessments (enumeration, vulnerability assessment) through **gated tools** — skills taught conversationally.
-<br/>`FastAPI` `React` `Vite` `Tailwind` `MCP` `Agentic AI`
-
-</td>
 <td width="50%" valign="top">
 
 #### 👁️ [PhantomEye](https://github.com/enigmuz/PhantomEye)
